@@ -1,0 +1,35 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static "Accounts/css/Game.css" %}">
+{% endblock %}
+
+{% block content %}
+    <h1 >round {{ round }}/20</h1>
+    <h2>point: {{ point }}</h2>
+    <h2>attempts {{ attempts }}/3</h2>
+    <a class="button" href="{% url "end_game" num=num %}">leave</a>
+    <img src="{{ flag }}" alt="question" >
+    <form method="get" action="" style="text-align: center">
+
+
+              <label><input type="radio" class="option-input radio" name="opinion"  value="1"/>
+        {{ question.op1 }}
+              </label>
+
+            <label><input type="radio" class="option-input radio" name="opinion"  value="2"/>
+        {{ question.op2 }}
+              </label>
+
+            <label><input type="radio" class="option-input radio" name="opinion"  value="3"/>
+        {{ question.op3 }}
+              </label>
+
+            <label><input type="radio" class="option-input radio" name="opinion"  value="4"/>
+        {{ question.op4 }}
+              </label><br>
+
+
+    <button class="button" type="submit">Next</button>
+    </form>
+{% endblock %}

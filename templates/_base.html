@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>{% block header %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>{% endblock header %}
+<body>{% block content %}{% endblock %}
+{#{% block table %}#}
+{#    <table>#}
+{#                <tr>#}
+{#                    <th>Item</th>#}
+{#                    <th>Count</th>#}
+{#                    <th>Calorie</th>#}
+{#                    <th>Date</th>#}
+{#                </tr>#}
+{#                    {% block tbody %}#}
+{#                        {% for i in day0 %}#}
+{#                            <tr>#}
+{#                                <td>{{ i.name }}</td>#}
+{#                                <td>{{ i.count }}</td>#}
+{#                                <td>{{ i.calorie }}</td>#}
+{#                                <td>{{ i.date | date:"M, d"}}</td>#}
+{##}
+{#                            </tr>#}
+{#                        {% endfor %}#}
+{#                        <tr>#}
+{#                            <td>{{ cal0 }}</td>#}
+{#                        </tr>#}
+{#                    {% endblock %}#}
+{##}
+{##}
+{#        </table>#}
+{#{% endblock %}#}
+</body>
+</html>

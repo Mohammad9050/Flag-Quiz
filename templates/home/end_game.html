@@ -1,0 +1,29 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static "Accounts/css/header.css" %}">
+{% endblock %}
+{% block content %}
+    <div class="header">
+
+  <div class="header-right">
+    <a class="active" href="{% url "main" %}">Home</a>
+      {% if user.is_authenticated %}
+        <a href="{% url "table" %}">Champion</a>
+        <a href="{% url "logout" %}">Logout</a>
+      {% else %}
+        <a href="{% url "login" %}">Sign in</a>
+      {% endif %}
+
+  </div>
+</div>
+    <h1>Game End</h1>
+    <h2>Point : {{ point }}</h2>
+    {% if num == 1 %}
+        <h2>Your Best Record : {{ profile.best_record }}</h2>
+    {% else %}
+        <h2>Your Best Record : {{ profile.best_record2 }}</h2>
+    {% endif %}
+
+{% endblock %}
