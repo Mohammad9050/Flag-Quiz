@@ -1,9 +1,10 @@
+import requests
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 import random
 import redis
 from django.urls import reverse
-from restcountries import RestCountryApiV2 as rapi
+# from restcountries import RestCountryApiV2 as rapi
 from FlagQuiz import settings
 from Home.forms import OpiForm
 from Home.models import Question, QuestionCapital
@@ -67,10 +68,13 @@ def game_view(request, num):
     opinions = [question.op1, question.op2, question.op3, question.op4]
     answer = opinions[question.answer - 1]  # name of answer country
     if num == 1:
-        flag = rapi.get_countries_by_name(answer)[0].flag  # flag
+        #  flag = rapi.get_countries_by_name(answer)[0].flag  # flag
+        flag_json = requests.get('https://restcountries.com/v3.1/name/%s' % answer).json()
+        flag = flag_json[0]['flags']['png']
     else:
 
-        flag = rapi.get_countries_by_capital(answer)[0].flag  # flag
+        flag_json = requests.get('https://restcountries.com/v3.1/capital/%s' % answer).json()
+        flag = flag_json[0]['flags']['png']
     if form.is_valid():
         obj = form.cleaned_data['opinion']
         r.incr(f'round:{profile.id}:{num}')
@@ -114,9 +118,3 @@ def ins_view(request, num):  # view for increase point
     profile = request.user.profile
     r.incr(f'question_num:{profile.id}:{num}')
     return redirect('game', num=num)
-
-# def leave_view(request):
-#     profile = request.user.profile
-#     point = int(r.get(f'point:{profile.id}'))
-#     profile.computing_record(point)
-#     return HttpResponseRedirect(reverse('end_game'))
