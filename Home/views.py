@@ -30,17 +30,17 @@ def end_game_view(request, num):
     return render(request, 'home/end_game.html', context)
 
 
-def test_db(request):
-    all_countries = rapi.get_all()
-    for i in range(5):
-        opinions = random.sample(all_countries, k=4)
-        op1 = opinions[0].capital
-        op2 = opinions[1].capital
-        op3 = opinions[2].capital
-        op4 = opinions[3].capital
-
-        QuestionCapital.objects.create(op1=op1, op2=op2, op3=op3, op4=op4)
-    return render(request, 'home/db.html', {})
+# def test_db(request):
+#     all_countries = rapi.get_all()
+#     for i in range(5):
+#         opinions = random.sample(all_countries, k=4)
+#         op1 = opinions[0].capital
+#         op2 = opinions[1].capital
+#         op3 = opinions[2].capital
+#         op4 = opinions[3].capital
+#
+#         QuestionCapital.objects.create(op1=op1, op2=op2, op3=op3, op4=op4)
+#     return render(request, 'home/db.html', {})
 
 
 def game_view(request, num):
